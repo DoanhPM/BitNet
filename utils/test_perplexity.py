@@ -9,6 +9,7 @@ import subprocess
 import time
 import csv
 import re
+import platform
 from datetime import datetime
 from pathlib import Path
 import argparse
@@ -47,6 +48,12 @@ class PerplexityTester:
         
         # Create output directory
         self.output_dir.mkdir(parents=True, exist_ok=True)
+
+        if platform.system() == "Windows":
+            if self.llama_perplexity_bin.suffix == "" and self.llama_perplexity_bin.with_suffix(".exe").exists():
+                self.llama_perplexity_bin = self.llama_perplexity_bin.with_suffix(".exe")
+            if self.quantize_bin.suffix == "" and self.quantize_bin.with_suffix(".exe").exists():
+                self.quantize_bin = self.quantize_bin.with_suffix(".exe")
         
         # Verify llama-perplexity binary exists
         if not self.llama_perplexity_bin.exists():

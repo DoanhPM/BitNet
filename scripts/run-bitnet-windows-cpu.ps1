@@ -7,7 +7,8 @@ param(
     [int]$Context = 2048,
     [double]$Temperature = 0.8,
     [string]$CondaExe = "",
-    [switch]$Conversation
+    [switch]$Conversation,
+    [switch]$Interactive
 )
 
 $ErrorActionPreference = "Stop"
@@ -55,6 +56,10 @@ $argsList = @(
 
 if ($Conversation) {
     $argsList += "-cnv"
+}
+
+if ($Interactive) {
+    $argsList += "-i"
 }
 
 $Conda = Resolve-CondaExe $CondaExe
