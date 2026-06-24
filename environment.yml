@@ -1,0 +1,9 @@
+name: bitnet-cpp
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - pip
+  - cmake>=3.22
+  - ninja
